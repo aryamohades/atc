@@ -1,0 +1,46 @@
+{{ define "base" }}
+  <!doctype html>
+  <html lang="en" data-theme="corporate">
+    <head>
+      <title>{{ .Meta.Title }}</title>
+      <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="/static/img/favicon.ico"
+      />
+      <meta name="description" content="{{ .Meta.Description }}" />
+      <meta name="keywords" content="{{ .Meta.Keywords }}" />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="htmx-config"
+        content='{"historyCacheSize": 0, "refreshOnHistoryMiss": true}'
+      />
+      <link rel="stylesheet" href="/static/{{ .Maincss }}" />
+      <script defer type="module" src="/static/{{ .Mainjs }}"></script>
+      {{ block "script" . }}{{ end }}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+      />
+      <noscript>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+          rel="stylesheet"
+          type="text/css"
+        />
+      </noscript>
+    </head>
+    <body hx-boost="true">
+      {{ template "header" . }}
+      <div class="flex-1">
+        {{ block "content" . }}{{ end }}
+      </div>
+      {{ template "footer" . }}
+    </body>
+  </html>
+{{ end }}

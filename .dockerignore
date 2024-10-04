@@ -1,0 +1,12 @@
+tmp/
+dist/
+node_modules/
+.air.toml
+.dockerignore
+.gitignore
+.git
+Dockerfile
+Makefile
+prettier.config.js
+*.db
+.DS_Store

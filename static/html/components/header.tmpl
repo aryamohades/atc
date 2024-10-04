@@ -1,0 +1,13 @@
+{{ define "header" }}
+  <div class="navbar bg-base-100">
+    <a href="/" class="btn btn-ghost text-xl">ATC</a>
+    <button
+      hx-post="/api/reset"
+      hx-trigger="click"
+      hx-swap="none"
+      class="btn btn-neutral btn-xs ml-4"
+    >
+      Reset
+    </button>
+  </div>
+{{ end }}

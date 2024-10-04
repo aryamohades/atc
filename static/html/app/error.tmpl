@@ -1,0 +1,18 @@
+{{ template "base" . }}
+
+{{ define "content" }}
+  <div class="hero h-[400px]">
+    <div class="hero-content text-center">
+      <div class="max-w-lg px-5">
+        <h1 class="text-3xl font-bold md:text-5xl">Oops!</h1>
+        <p class="py-6 text-sm text-neutral-400 md:text-base">
+          Something went wrong. Don&apos;t worry, we&apos;ve been automatically
+          notified and we&apos;re working on it. Please try again later. If the
+          problem persists, please
+          <a href="mailto:support@atc.com" class="link">contact us</a>.
+        </p>
+        <a href="/" class="btn btn-primary">Take Me Home</a>
+      </div>
+    </div>
+  </div>
+{{ end }}

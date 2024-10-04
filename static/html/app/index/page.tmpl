@@ -1,0 +1,113 @@
+{{ template "base" . }}
+
+{{ define "content" }}
+  <div
+    id="encounters-container"
+    hx-get
+    hx-trigger="load delay:2s"
+    hx-swap="outerHTML"
+    {{ if .Sort }}hx-swap-oob="true"{{ end }}
+  >
+    <div class="flex h-full flex-1 flex-col">
+      <div class="overflow-x-auto">
+        <table class="table table-pin-rows table-pin-cols table-xs">
+          <thead>
+            <tr>
+              {{ range .Columns }}
+                {{ template "table-column" . }}
+              {{ end }}
+            </tr>
+          </thead>
+          <tbody>
+            {{ range .Rows }}
+              <tr class="hover">
+                {{ template "patient-id-cell" . }}
+                {{ template "description-cell" . }}
+                {{ template "status-cell" . }}
+                {{ template "severity-cell" . }}
+                {{ template "alert-cell" . }}
+                {{ template "time-cell" . }}
+                {{ template "start-time-cell" . }}
+              </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{ end }}
+
+{{ define "patient-id-cell" }}
+  <td>
+    <span>{{ .PatientID }}</span>
+  </td>
+{{ end }}
+
+{{ define "description-cell" }}
+  <td>
+    <span>{{ .EncounterType.Description }}</span>
+  </td>
+{{ end }}
+
+{{ define "status-cell" }}
+  <td>
+    {{ if eq .Status "waiting" }}
+      <span class="badge badge-warning badge-sm">Waiting</span>
+    {{ else if eq .Status "triaged" }}
+      <span class="badge badge-neutral badge-outline badge-sm">Triaged</span>
+    {{ else if eq .Status "completed" }}
+      <span class="badge badge-success badge-sm">Completed</span>
+    {{ else }}
+      <span class="badge badge-neutral badge-outline badge-sm">Unknown</span>
+    {{ end }}
+  </td>
+{{ end }}
+
+{{ define "severity-cell" }}
+  <td>
+    {{ if eq .EncounterType.Severity 1 }}
+      <span class="badge badge-neutral badge-outline badge-sm">Low</span>
+    {{ else if eq .EncounterType.Severity 2 }}
+      <span class="badge badge-warning badge-sm">Medium</span>
+    {{ else if eq .EncounterType.Severity 3 }}
+      <span class="badge badge-error badge-sm">High</span>
+    {{ else }}
+      <span class="badge badge-neutral badge-outline badge-sm">Unknown</span>
+    {{ end }}
+  </td>
+{{ end }}
+
+{{ define "alert-cell" }}
+  <td>
+    {{ if eq .AlertLevel 0 }}
+      <span class="badge badge-success badge-sm">OK</span>
+    {{ else if eq .AlertLevel 1 }}
+      <span class="badge badge-warning badge-sm">Low</span>
+    {{ else if eq .AlertLevel 2 }}
+      <span class="badge badge-sm bg-orange-500">High</span>
+    {{ else if eq .AlertLevel 3 }}
+      <span class="badge badge-error badge-sm">Critical</span>
+    {{ else }}
+      <span class="badge badge-neutral badge-outline badge-sm">Unknown</span>
+    {{ end }}
+  </td>
+{{ end }}
+
+{{ define "time-cell" }}
+  <td>
+    <span>{{ .TimeInStatus }}</span>
+  </td>
+{{ end }}
+
+{{ define "start-time-cell" }}
+  <td>
+    <span
+      x-data
+      x-local-time
+      data-time="{{ .StartedAt }}"
+      class="opacity-0 transition-opacity duration-75"
+    >
+      {{ .StartedAt }}
+    </span>
+  </td>
+{{ end }}

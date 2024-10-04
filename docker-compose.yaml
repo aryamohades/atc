@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16.0
+    container_name: atc-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=atc
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - atc
+
+volumes:
+  pgdata:
+
+networks:
+  atc:
+    name: atc

@@ -1,0 +1,30 @@
+{
+  "name": "atc",
+  "version": "0.0.0",
+  "scripts": {
+    "js:build": "esbuild static/js/main.js --bundle --minify --sourcemap --loader:.css=empty --outfile=static/dist/main.js",
+    "js:dev": "esbuild static/js/main.js --bundle --minify --sourcemap --loader:.css=empty --outfile=static/dist/main.js --watch=forever",
+    "css:build": "tailwindcss --postcss -i static/css/main.css -o static/dist/main.css",
+    "css:dev": "tailwindcss --postcss -i static/css/main.css -o static/dist/main.css --watch",
+    "build": "concurrently pnpm:*:build",
+    "dev": "concurrently pnpm:*:dev",
+    "format": "prettier ./**/*.{js,html,css,json,tmpl} --write"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.1",
+    "date-fns": "^3.6.0",
+    "htmx.org": "^1.9.12"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "cssnano": "^7.0.3",
+    "daisyui": "^4.12.8",
+    "esbuild": "^0.21.5",
+    "postcss": "^8.4.38",
+    "prettier": "^3.3.2",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.4"
+  }
+}
