@@ -67,11 +67,6 @@ func run(ctx context.Context) error {
 
 	plt := atc.NewPlatform(logger, db, &atc.PlatformConfig{})
 
-	if err := plt.StartTasks(ctx); err != nil {
-		logger.Error("failed to initialize platform tasks", slog.String("error", err.Error()))
-		return err
-	}
-
 	if err := plt.SimulateEncounters(ctx); err != nil {
 		logger.Error("failed to simulate encounters", slog.String("error", err.Error()))
 		return err
@@ -120,6 +115,5 @@ type config struct {
 		BasicAuthRealm    string `env:"WEB_BASIC_AUTH_REALM,unset"`
 		BasicAuthUser     string `env:"WEB_BASIC_AUTH_USER,unset"`
 		BasicAuthPassword string `env:"WEB_BASIC_AUTH_PASSWORD,unset"`
-		GoogleAnalyticsID string `env:"WEB_GOOGLE_ANALYTICS_ID,unset"`
 	}
 }
