@@ -1,4 +1,4 @@
-Live link: https://atc-demo-dr9b7.ondigitalocean.app/
+Live link (use the Reset button to start the simulation!): https://atc-demo-dr9b7.ondigitalocean.app/
 
 <img width="1099" alt="Screenshot 2024-10-04 at 10 38 50 AM" src="https://github.com/user-attachments/assets/8ef08d6a-53aa-4ccc-91a7-02327db7956d">  
 
